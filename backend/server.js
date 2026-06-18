@@ -7,7 +7,7 @@ const app = express()
 
 
 app.use(cors({
-  origin:'https://lms-project-livid.vercel.app/'
+  origin:'https://lms-project-a09woqq1q-himanshus-projects-f57263f1.vercel.app/'
 }))
 app.use(express.json())
 
