@@ -19,7 +19,13 @@ function AddLeadModal({ onClose, onRefresh }) {
       return
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+if (!/^[0-9]{10}$/.test(form.phone)) {
+    setError('Please enter valid no.!')
+    return
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 if (!emailRegex.test(form.email)) {
   setError(" enter Valid email")
@@ -32,7 +38,7 @@ if (!emailRegex.test(form.email)) {
       onRefresh()
       onClose()
     } catch {
-      setError('Error aaya, dobara try karo')
+      setError('Please enter valid fields')
     }
     setSaving(false)
   }
