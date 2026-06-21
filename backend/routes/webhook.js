@@ -128,7 +128,7 @@ module.exports = router
 //   })
 // }
 
-// // Website leads
+// // Website lead
 // router.post('/website', async (req, res) => {
 //   try {
 //     const lead = await Lead.create({
