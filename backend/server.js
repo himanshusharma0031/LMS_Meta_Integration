@@ -9,7 +9,11 @@ const app = express()
 app.use(cors({
   origin:['http://localhost:5173','https://lms-project-6euy.vercel.app']
 }))
-app.use(express.json())
+app.use(express.json({
+  verify: (req, res, buffer) => {
+    req.rawBody = buffer
+  }
+}))
 
 
 mongoose.connect(process.env.MONGO_URI)

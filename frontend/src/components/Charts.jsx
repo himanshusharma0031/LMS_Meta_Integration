@@ -11,9 +11,10 @@ function Charts({ leads }) {
   ]
 
   const statuses = [
-    { label: 'New',       val: count('status','new'),       color: '#f59e0b', max: leads.length },
-    { label: 'Contacted', val: count('status','contacted'), color: '#1d4ed8', max: leads.length },
-    { label: 'Converted', val: count('status','converted'), color: '#15803d', max: leads.length },
+    { label: 'Intake',        val: count('status','intake'),        color: '#f59e0b', max: leads.length },
+    { label: 'Qualified',     val: count('status','qualified'),     color: '#1d4ed8', max: leads.length },
+    { label: 'Not Qualified', val: count('status','not qualified'), color: '#ef4444', max: leads.length },
+    { label: 'Converted',     val: count('status','converted'),     color: '#15803d', max: leads.length },
   ]
 
   const pct = (val, max) => max ? Math.round((val / max) * 100) : 0
@@ -23,7 +24,7 @@ function Charts({ leads }) {
 
       {/* Source chart */}
       <div className="chart-box">
-        <div className="chart-title">Leads accoording to source</div>
+        <div className="chart-title">Leads according to source</div>
         {sources.map(s => (
           <div key={s.label} className="bar-row">
             <div className="bar-label">{s.label}</div>

@@ -3,13 +3,25 @@ const router = express.Router()
 const Lead = require('../models/Lead')
 
 
+const normalizeStatus = (value) => {
+  const normalized = String(value || '').trim().toLowerCase()
+
+  if (!normalized) return 'intake'
+  if (normalized === 'new') return 'intake'
+  if (normalized === 'contacted') return 'qualified'
+  if (normalized === 'not-qualified' || normalized === 'not_qualified') return 'not qualified'
+
+  return normalized
+}
+
+
 router.get('/', async (req, res) => {
   try {
     const { source, status } = req.query
     let filter = {}
 
     if (source) filter.source = source
-    if (status) filter.status = status
+    if (status) filter.status = normalizeStatus(status)
 
     const leads = await Lead.find(filter).sort({ createdAt: -1 })
     res.json({ success: true, leads })
@@ -34,8 +46,8 @@ router.patch('/:id/status', async (req, res) => {
   try {
     const lead = await Lead.findByIdAndUpdate(
       req.params.id,
-      { status: req.body.status },
-      { new: true }
+      { status: normalizeStatus(req.body.status) },
+      { returnDocument: 'after' }
     )
     res.json({ success: true, lead })
   } catch (err) {
