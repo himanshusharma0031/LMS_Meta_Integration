@@ -7,7 +7,7 @@ const app = express()
 
 
 app.use(cors({
-  origin:['http://localhost:5173','https://lms-project-6euy.vercel.app']
+  origin:['http://localhost:5173']
 }))
 app.use(express.json({
   verify: (req, res, buffer) => {
